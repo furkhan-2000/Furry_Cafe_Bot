@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furry Café Chatbot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0e4d7; /* Light brown background */
+            color: #333;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 20px;
+            background-color: #5d4037; /* Shiny brown header */
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        .header img {
+            width: 150px; /* Increased logo size */
+            height: auto;
+            margin-right: 15px;
+            animation: glitter 1.5s infinite alternate;
+        }
+
+        @keyframes glitter {
+            0% {
+                opacity: 0.8;
+                filter: brightness(1) saturate(1);
+            }
+            50% {
+                opacity: 1;
+                filter: brightness(1.3) saturate(1.2);
+            }
+            100% {
+                opacity: 0.8;
+                filter: brightness(1) saturate(1);
+            }
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            color: #fff;
+            margin: 0;
+        }
+
+        .motto {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.5em;
+            color: #333;
+            text-align: center;
+            margin: 10px 0 30px;
+        }
+
+        .slideshow-container {
+            width: 100%;
+            max-width: 1000px; /* Adjusted width */
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .slideshow-slide {
+            width: 48%;  /* Increased the width of each image */
+            height: 400px; /* Increased height */
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: filter 0.5s ease-in-out;  /* Smooth transition for dim-bright effect */
+        }
+
+        .slideshow-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .slideshow-slide:hover {
+            filter: brightness(1.2); /* Dim to bright effect on hover */
+        }
+
+        .chat-box {
+            width: 100%;
+            height: 250px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-top: 30px;
+        }
+
+        .input-box {
+            width: 100%;
+            display: flex;
+            margin-top: 10px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 20%;
+            padding: 10px;
+            margin-left: 10px;
+            background-color: #000; /* Black send button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        .address {
+            font-size: 1em;
+            margin: 20px 0;
+            color: #555;
+            text-align: center;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            background-color: #000; /* Black footer */
+            color: #fff;
+            padding: 20px;
+            width: 100%;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- Updated logo URL -->
+            <img src="https://www.seekpng.com/png/detail/115-1152437_cafe-coffee-logos-png-taza-de-cafe-logo.png" alt="Furry Café Logo">
+            <h1>FURRY CAFÉ</h1>
+        </div>
+
+        <div class="motto">"Brewing Moments, Serving Smiles"</div>
+
+        <div class="slideshow-container">
+            <div class="slideshow-slide">
+                <img src="https://i.pinimg.com/originals/15/92/58/15925853dd2b148285cfc34179c74e1f.jpg" alt="Cafe Image 1">
+            </div>
+            <div class="slideshow-slide">
+                <img src="https://images4.alphacoders.com/904/thumbbig-904321.webp" alt="Cafe Image 2">
+            </div>
+            <div class="slideshow-slide">
+                <img src="https://images3.alphacoders.com/940/thumbbig-940406.webp" alt="Cafe Image 3">
+            </div>
+            <div class="slideshow-slide">
+                <img src="https://images6.alphacoders.com/590/thumbbig-590561.webp" alt="Cafe Image 4">
+            </div>
+            <div class="slideshow-slide">
+                <img src="https://t3.ftcdn.net/jpg/00/68/75/16/240_F_68751655_EizURIc0SqERBKwWQNL0MfXU1UAh4Bo8.jpg" alt="Cafe Image 5">
+            </div>
+        </div>
+
+        <div class="chat-box" id="chat-box">
+            <!-- Chat messages will be displayed here -->
+        </div>
+
+        <div class="input-box">
+            <input type="text" id="user-input" placeholder="Say something...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Designed & Developed by فرخان محمد</p>
+    </div>
+
+    <script>
+        function appendMessage(message, type) {
+            const chatBox = document.getElementById("chat-box");
+            const div = document.createElement("div");
+            div.classList.add("message");
+            div.classList.add(type === "user" ? "user-message" : "bot-message");
+            div.textContent = message;
+            chatBox.appendChild(div);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const userInput = document.getElementById("user-input").value;
+            if (!userInput.trim()) return;
+
+            appendMessage(userInput, "user");
+            document.getElementById("user-input").value = "";
+
+            try {
+                const response = await fetch('/send_message', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: userInput })
+                });
+
+                const data = await response.json();
+                appendMessage(data.response_text, "bot");
+            } catch (error) {
+                appendMessage("Sorry, I couldn't respond. Please try again.", "bot");
+            }
+        }
+    </script>
+</body>
+</html>
